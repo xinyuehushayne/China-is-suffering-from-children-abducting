@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+option = null;
+option = {
+    title : {
+        text: '走失年份分布图',
+        subtext: '1932-2017',
+        x: 'center',
+        align: 'right'
+    },
+    grid: {
+        bottom: 150,
+        top:80,
+        
+    },
+    toolbox: {
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            animation: false,
+            label: {
+                backgroundColor: '#505765'
+            }
+        }
+    },
+    
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : true,
+            axisLine: {onZero: false},
+            axisLabel: {  
+                   interval:0,  
+                   color:'#fff',
+                   formatter:function(value)  
+                               {  
+                                   return value.split("").join("\n");  
+                               }    
+                } ,
+            data : [
+             "1932","  33","  37","  38","  39","  40","  41","  42","  43","  44","  45","  46","  47","  48","  49","  50",
+"  51","  52","  53","  54","  55","  56","  57","  58","  59","  60","  61","  62","  63","  64","  65","  66",
+"  67","  68","  69","  70","  71","  72","  73","  74","  75","  76","  77","  78","  79","  80","  81","  82",
+"  83","  84","  85","  86","  87","  88","  89","  90","  91","  92","  93","  94","  95","  96","  97","  98",
+"  99","2000","  01","  02","  03","  04","  05","  06","  07","  08","  09","  10","  11","  12","  13","  14",
+"  15","  16","  17"
+             ].map(function (str) {
+                return str.replace(' ', '\n')
+            })
+        }
+    ],
+    yAxis: [
+        {
+            name: '人数',
+            type: 'value',
+            max: 300,
+            axisLabel:{
+                color:'#fff'
+            },
+            nameTextStyle:{
+                color:'#fff'
+            },
+        },
+    ],
+     dataZoom: [
+        {
+            show: true,
+            realtime: true,
+            start: 80,
+            end: 55
+        },
+        // {
+        //     type: 'inside',
+        //     realtime: true,
+        //     start: 65,
+        //     end: 85
+        // }
+    ],
+    series: [
+        {
+        name:'女人产假总周数',
+         silent: true,
+        barWidth: 5,
+        animation: true,
+        type: 'bar',
+        markArea: {
+                // silent: false,
+                itemStyle:{
+                    color :'rgb(144,144,144,0.3)'
+                },
+                data: [[{
+                    xAxis: '比利时'
+                }, {
+                    xAxis: '瑞士'
+                }]]
+            },
+        itemStyle: {
+            normal: {
+                color: ''
+                // color:'#eb726f'
+            }
+        },
+       label:{
+         show:true,
+         position:'top',
+       },
+        barGap: '-100%', // Make series be overlap
+        data: [
+            3,2,4,4,6,5,1,4,11,8,8,3,6,5,5,5,8,3,3,8,8,5,14,32,42,69,22,16,24,10,14,15,11,23,33,29,31,41,33,31,40,38,53,40,45,80,75,95,99,91,124,190,215,222,265,296,252,230,211,175,184,146,113,106,96,73,58,54,60,46,48,34,26,24,22,28,28,39,27,44,61,99,78
+
+            ]}, 
+    ]
+};
+;;;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>

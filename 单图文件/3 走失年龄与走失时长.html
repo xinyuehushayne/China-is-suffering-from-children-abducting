@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+option = {
+     title: {
+        text: '走失年龄与走失时长分布',
+        subtext: '左边走失时年龄，右边走失时长。',
+        left: 'left',
+        top: 'top',
+        fontSize:'50'
+
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c}人"
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        top: 'center',
+        feature: {
+            dataView: {readOnly: false},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['1岁以下','10岁以下','10-20岁','20-30岁','30-40岁','40-50岁','50-60岁','60-70岁','70-80岁','80岁以上']
+    },
+    calculable: true,
+    series: [
+       
+        {
+            name: '走失年龄',
+            type:'funnel',
+            width: '20%',
+            height: '40%',
+            left: '10%',
+            top: '8%',
+            sort: 'none',
+            funnelAlign: 'right',
+            animation:[true],
+            animationEasing: name,
+            animationDuration: 1000,
+
+            center: ['25%', '75%'],  // for pie
+
+            data:[
+                {value: 2283    ,name:' 1岁以下    '},
+                {value: 1613    ,name:' 5岁以下    '},
+                {value: 481 ,name:' 5-10岁   '},
+                {value: 446 ,name:' 10-15岁  '},
+                {value: 77  ,name:' 15-20岁  '},
+                {value: 10  ,name:' 20-25岁  '},
+                {value: 7   ,name:' 25-30岁  '},
+                {value: 6   ,name:' 30-35岁  '},
+                {value: 3   ,name:' 35-40岁  '},
+                {value: 0   ,name:' 40-45岁  '},
+                {value: 0   ,name:' 45-50岁  '},
+                {value: 1   ,name:' 50-55岁  '},
+                {value: 0   ,name:' 55-60岁  '},
+                {value: 0   ,name:' 60-65岁  '},
+                {value: 0   ,name:' 65-70岁  '},
+                {value: 0   ,name:' 70-75岁  '},
+                {value: 0   ,name:' 75-80岁  '},
+                {value: 0   ,name:' 80-85岁  '},
+                {value: 0   ,name:' 85岁以上   '}
+
+            ]
+        },
+        {
+            name:'走失时长',
+            type:'funnel',
+            width: '35%',
+            height: '100%',
+            left: '50%',
+            top: '8%',
+            sort: 'none',
+            funnelAlign: 'left',
+            animation:[true],
+            animationEasing: name,
+            animationDuration: 2000,
+
+            center: ['75%', '25%'],  // for pie
+
+            data: [
+                {value: 78  ,name:' 1年以下    '},
+                {value: 270 ,name:' 5年以下    '},
+                {value: 128 ,name:' 5-10年   '},
+                {value: 243 ,name:' 10-15年  '},
+                {value: 446 ,name:' 15-20年  '},
+                {value: 946 ,name:' 20-25年  '},
+                {value: 1250,name:' 25-30年  '},
+                {value: 599 ,name:' 30-35年  '},
+                {value: 293 ,name:' 35-40年  '},
+                {value: 183 ,name:' 40-45年  '},
+                {value: 127 ,name:' 45-50年  '},
+                {value: 79  ,name:' 50-55年  '},
+                {value: 179 ,name:' 55-60年  '},
+                {value: 41  ,name:' 60-65年  '},
+                {value: 29  ,name:' 65-70年  '},
+                {value: 34  ,name:' 70-75年  '},
+                {value: 20  ,name:' 75-80年  '},
+                {value: 5   ,name:' 80-85年  '},
+                {value: 0   ,name:' 85年以上   '}
+
+
+            ]
+        },
+       
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>

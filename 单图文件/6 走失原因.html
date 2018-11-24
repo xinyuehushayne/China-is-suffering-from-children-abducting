@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">	   
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript">
+		var dom = document.getElementById("container");
+		var myChart = echarts.init(dom);
+		var app = {};
+		option = null;
+		var dataMap = {};
+		function dataFormatter(obj) {
+			var pList = ['抱养','被拐','出走后被拐','拐卖','离家出走','流浪乞讨','失联','送养','随母离家','先送后卖','遗弃','失踪'];
+			var temp;
+			for (var year = 2007; year <= 2017; year++) {
+				var max = 0;
+				var sum = 0;
+				temp = obj[year];
+				for (var i = 0, l = temp.length; i < l; i++) {
+					max = Math.max(max, temp[i]);
+					sum += temp[i];
+					obj[year][i] = {
+						name : pList[i],
+						value : temp[i]
+					}
+				}
+				obj[year + 'max'] = Math.floor(max / 100) * 100;
+				obj[year + 'sum'] = sum;
+			}
+			return obj;
+		}
+
+
+
+		dataMap.dataEstate = dataFormatter({
+			//max : 3600,
+			2017:[0,227,2,2,27,0,25,88,0,1,12,24],
+			2016:[11,171,0,25,10,0,5,79,1,0,16,63],
+			2015:[1,208,0,5,16,0,0,127,0,0,19,48],
+			2014:[0,107,0,1,18,0,3,45,0,0,10,22],
+			2013:[0,84,0,4,15,0,0,48,0,0,7,24],
+			2012:[0,105,0,0,6,0,0,50,0,0,9,37],
+			2011:[0,87,0,0,25,1,0,41,0,0,8,30],
+			2010:[0,50,0,0,9,1,0,14,0,0,3,15],
+			2009:[0,23,0,0,5,4,0,5,0,0,17],
+			2008:[0,11,0,0,2,0,0,0,0,0,2],
+			2007:[0,5,0,0,4,0,0,0,0,0,1]
+		});
+
+
+
+
+		option = {
+			baseOption: {
+				timeline: {
+					// y: 0,
+					axisType: 'category',
+					// realtime: false,
+					// loop: false,
+					autoPlay: true,
+					// currentIndex: 2,
+					playInterval: 2000,
+					// controlStyle: {
+					//     position: 'left'
+					// },
+					data: [
+						'2007-01-01','2008-01-01','2009-01-01','2010-01-01','2011-01-01', '2012-01-01','2013-01-01','2014-01-01','2015-01-01', '2016-01-01','2017-01-01'
+							
+					],
+					label: {
+						formatter : function(s) {
+							return (new Date(s)).getFullYear();
+						}
+											
+					}
+				},
+				title: {
+				   subtext:"数据来源于“宝贝回家”网站"
+				},
+				tooltip: {},
+			   
+				calculable : true,
+				grid: {
+					top: 80,
+					bottom: 100
+				},
+				xAxis: [
+					{
+						'type':'category',
+						'axisLabel':{'interval':0},
+						'data':[
+							'抱养','被拐','出走后被拐','拐卖','离家出走','流浪乞讨','失联','送养','随母离家','先送后卖','遗弃','失踪'
+						],
+						splitLine: {show: false}
+					}
+				],
+				yAxis: [
+					{
+						type: 'value',              
+						max: 200
+					}
+				],
+				lineStyle: {
+									color: 'white'
+
+								},
+				series: [
+					{ type: 'bar'},
+				]
+			},
+			options: [
+				{
+					title: {text: '2007走失原因'},
+					series: [
+						{data: dataMap.dataEstate['2007']},
+					]
+				},
+				{
+					title : {text: '2008走失原因'},
+					series : [
+						{data: dataMap.dataEstate['2008']},
+					]
+				},
+				{
+					title : {text: '2009走失原因'},
+					series : [
+						{data: dataMap.dataEstate['2009']},
+					]
+				},
+				{
+					title : {text: '2010走失原因'},
+					series : [
+						
+						{data: dataMap.dataEstate['2010']},
+					   
+					]
+				},
+				{
+					title : {text: '2011走失原因'},
+					series : [
+						{data: dataMap.dataEstate['2011']},
+					]
+				},
+				{
+					title : {text: '2012走失原因'},
+					series : [
+						{data: dataMap.dataEstate['2012']},
+					]
+				},
+				{
+					title : {text: '2013走失原因'},
+					series : [
+						{data: dataMap.dataEstate['2013']},
+					]
+				},
+				{
+					title : {text: '2014走失原因'},
+					series : [
+						{data: dataMap.dataEstate['2014']},
+					]
+				},
+				{
+					title : {text: '2015走失原因'},
+					series : [
+						{data: dataMap.dataEstate['2015']},
+					]
+				},
+				{
+					title : {text: '2016走失原因'},
+					series : [
+						{data: dataMap.dataEstate['2016']},
+					]
+				},
+				{
+					title : {text: '2017走失原因'},
+					series : [
+						{data: dataMap.dataEstate['2017']},
+					]
+				}
+			]
+		};
+		if (option && typeof option === "object") {
+			myChart.setOption(option, true);
+		}
+			   </script>
+   </body>
+</html>
